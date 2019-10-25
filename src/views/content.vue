@@ -1,6 +1,6 @@
 <template>
   <Content :style="{padding: '0 50px'}">
-    <Breadcrumb :style="{margin: '80px 0'}"></Breadcrumb>
+    <Breadcrumb :style="{margin: '40px 0'}"></Breadcrumb>
     <Card>
       <div style="min-height: 1600px;" clearfix>
         <index-show></index-show>
@@ -25,6 +25,8 @@
   font-size: 1.5rem;
   color: rgba(28, 202, 255, 0.863);
 }
+
+
 </style>
     
 
@@ -48,10 +50,10 @@ export default {
   },
   watch: {
     scroll: function(old) {
-      if (old >= 500) {
+      if (old >= 600) {
         this.flag = true;
       }
-      if (old < 500) {
+      if (old < 600) {
         this.flag = false;
       }
     }

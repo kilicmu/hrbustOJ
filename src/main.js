@@ -5,15 +5,26 @@ import Routers from './router';
 import Util from './libs/util';
 import App from './app.vue';
 import indexShow from './views/home.vue'
+import answer from './views/answer.vue'
 import mainContent from './views/content.vue'
 import threeCards from './views/threeCards.vue'
 import 'view-design/dist/styles/iview.css'
-import Header from'./views/header.vue'
+import Header from './views/header.vue'
+import processPic from './views/process.vue'
 import './styles/animate.css'
+import newLi from './views/newLi.vue'
+import echarts from "echarts";
+import VueResource from 'vue-resource'
+
 import './js/adapt.js'
+
+
+
+Vue.prototype.$echarts = echarts;
 
 Vue.use(VueRouter);
 Vue.use(ViewUI);
+Vue.use(VueResource);
 
 // 路由配置
 const RouterConfig = {
@@ -32,11 +43,13 @@ router.afterEach((to, from, next) => {
     ViewUI.LoadingBar.finish();
     window.scrollTo(0, 0);
 });
-
+//组件注册
 Vue.component('index-show', indexShow)
 Vue.component('main-content', mainContent)
 Vue.component('all-header', Header)
 Vue.component('three-cards', threeCards)
+Vue.component('process-pic', processPic)
+Vue.component('new-li', newLi)
 
 new Vue({
     el: '#app',
@@ -44,4 +57,3 @@ new Vue({
 
     render: h => h(App)
 });
-

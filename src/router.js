@@ -1,5 +1,4 @@
-const routers = [
-    {
+const routers = [{
         path: '/',
         meta: {
             title: 'content'
@@ -8,10 +7,11 @@ const routers = [
     },
     {
         path: '/problems',
-        meta: {
-            title: 'problems'
-        },
-        component: (resolve) => require(['./views/problems.vue'], resolve)
+        component: (resolve) => require(['./views/problems.vue'], resolve),
+    },
+    {
+        path: '/problem/:problem_id',
+        component: (resolve) => require(['./views/answer.vue'], resolve),
     }
 ];
 export default routers;

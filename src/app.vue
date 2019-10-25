@@ -29,19 +29,19 @@
 .v-enter,
 .v-leave-to {
   opacity: 0;
-  transform: translateY(200px);
+  transform: translateY(100px);
 }
 
 .v-enter-active,
 .v-leave-active {
-  transition: all 0.8s ease;
+  transition: all 0.4s ease;
 }
 </style>
 <template>
   <div class="layout">
     <Layout>
       <all-header></all-header>
-      <transition>
+      <transition mode="out-in">
         <router-view></router-view>
       </transition>
       <Footer class="layout-footer-center">2019 &copy; hrbustOJ</Footer>

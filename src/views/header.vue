@@ -1,51 +1,50 @@
 <template>
-  <Menu mode="horizontal" :theme="theme" active-name="1" id="head">
-    <div id="school_icon">
-      <div id="icon"></div>
-    </div>
-    <p id="school_name">hrbustOnlineJudge</p>
+  <Header :theme="theme" class="head_box">
+    <Menu mode="horizontal" :theme="theme" active-name="1" id="head" if-show="show" replace=true>
+      <div id="school_icon">
+        <div id="icon"></div>
+      </div>
+      <p id="school_name">hrbustOnlineJudge</p>
 
-    <div id="group">
-      
-      <MenuItem name="1" to="/">
-        <Icon type="ios-home" />Home
-      </MenuItem>
-      
+      <div id="group">
+        <MenuItem name="1" to="/">
+          <Icon type="ios-home" />Home
+        </MenuItem>
 
-      <MenuItem name="2" to="/problems">
-        <Icon type="md-code" />Problems
-      </MenuItem>
-      <MenuItem name="3">
-        <Icon type="md-trophy" />Contest
-      </MenuItem>
-      <MenuItem name="4">
-        <Icon type="md-stats" />Status
-      </MenuItem>
-      <MenuItem name="5">
-        <Icon type="ios-people" />Rank
-      </MenuItem>
-      <Submenu name="6">
-        <template slot="title">
-          <Icon type="ios-menu" />About
-        </template>
-        <MenuGroup title="使用">
-          <MenuItem name="6-1">新增和启动</MenuItem>
-          <MenuItem name="6-2">活跃分析</MenuItem>
-          <MenuItem name="6-3">时段分析</MenuItem>
-        </MenuGroup>
-        <MenuGroup title="留存">
-          <MenuItem name="6-4">用户留存</MenuItem>
-          <MenuItem name="6-5">流失用户</MenuItem>
-        </MenuGroup>
-      </Submenu>
-      <span class="ivu-avatar ivu-avatar-circle ivu-avatar-icon">
-        <i class="ivu-icon ivu-icon-ios-person"></i>
-      </span>
+        <MenuItem name="2" to="/problems">
+          <Icon type="md-code" />Problems
+        </MenuItem>
+        <MenuItem name="3">
+          <Icon type="md-trophy" />Contest
+        </MenuItem>
+        <MenuItem name="4">
+          <Icon type="md-stats" />Status
+        </MenuItem>
+        <MenuItem name="5">
+          <Icon type="ios-people" />Rank
+        </MenuItem>
+        <Submenu name="6">
+          <template slot="title">
+            <Icon type="ios-menu" />About
+          </template>
+          <MenuGroup title="使用">
+            <MenuItem name="6-1">新增和启动</MenuItem>
+            <MenuItem name="6-2">活跃分析</MenuItem>
+            <MenuItem name="6-3">时段分析</MenuItem>
+          </MenuGroup>
+          <MenuGroup title="留存">
+            <MenuItem name="6-4">用户留存</MenuItem>
+            <MenuItem name="6-5">流失用户</MenuItem>
+          </MenuGroup>
+        </Submenu>
+        <span class="ivu-avatar ivu-avatar-circle ivu-avatar-icon">
+          <i class="ivu-icon ivu-icon-ios-person"></i>
+        </span>
 
-      <button type="button" class="ivu-btn ivu-btn-text ivu-btn-large">
-        <span>登录</span>
-      </button>
-      <template>
+        <button type="button" class="ivu-btn ivu-btn-text ivu-btn-large">
+          <span>登录</span>
+        </button>
+
         <Dropdown id="login">
           <a href="javascript:void(0)">
             <Icon type="ios-arrow-down"></Icon>
@@ -56,9 +55,9 @@
             <DropdownItem divided>退出登录</DropdownItem>
           </DropdownMenu>
         </Dropdown>
-      </template>
-    </div>
-  </Menu>
+      </div>
+    </Menu>
+  </Header>
 </template>
 
 
@@ -66,16 +65,24 @@
 export default {
   data() {
     return {
-      theme: "light"
+      show: false
     };
   }
 };
 </script>
 
 <style scoped>
+.ivu-layout-header {
+  background: #ffffff00;
+  padding: 0;
+}
+#head_box {
+  padding: 0;
+}
 #head {
   box-shadow: 2px 2px 2px #adadad79;
   width: 100%;
+
   position: fixed;
 }
 
