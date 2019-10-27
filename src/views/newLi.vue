@@ -60,11 +60,9 @@
 }
 
 .tag {
-  width: 28%;
-  height: 40%;
-
+  
   text-align: center;
-  font-size: 8px;
+  font-size: 12px;
 }
 </style>
 

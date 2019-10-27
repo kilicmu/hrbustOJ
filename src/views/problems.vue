@@ -1,10 +1,10 @@
 <template>
   <Content :style="{padding: '0 50px'}">
-    <Breadcrumb :style="{margin: '40px'}"></Breadcrumb>
+    
     <Row type="flex" justify="center" align="top" class="code-row-bg">
       <Col span="20">
         <Card>
-          <div style="min-height: 1500px;">
+          
             <div></div>
             <new-li></new-li>
             <div id="title_strong">
@@ -116,6 +116,7 @@
   top: 80px;
   left: 3.875rem;
   right: 3.875rem;
+  height: 70%;
 }
 
 .title_tags {

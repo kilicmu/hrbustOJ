@@ -1,8 +1,8 @@
 <template>
   <div style="position: relative">
     <div id="bck_pic"></div>
-    
-      <img src="../images/header-teamwork.svg" id="header_teamwork" />
+
+    <img src="../images/header-teamwork.svg" id="header_teamwork" />
     <div id="info">
       <h2>An OJ platform</h2>
       <p>You can learn the algorithm here</p>
@@ -10,13 +10,30 @@
         And of course, we're going to take your problem solving information,
         you can we're going to show you the data with other people
       </p>
-      <Button type="primary" shape="circle" class="start_to_problems" to="/problems">start</Button>
-      <Button shape="circle" class="start_to_problems" style="margin-left: 3.75rem">news</Button>
+      <Button
+        type="primary"
+        :append="b_append"
+        shape="circle"
+        class="start_to_problems"
+        to="/problems"
+      >start</Button>
+      <Button
+        shape="circle"
+        :append="b_append"
+        class="start_to_problems"
+        style="margin-left: 3.75rem"
+      >news</Button>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      b_append: false
+    };
+  }
+};
 </script>
 
 <style scoped>
@@ -45,7 +62,7 @@ export default {};
 }
 #info h2 {
   font-weight: bolder;
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   color: rgba(0, 163, 212, 0.911);
 }
 
@@ -57,8 +74,9 @@ export default {};
 .start_to_problems {
   margin-top: 5rem;
   width: 10rem;
-  height: 2rem;
-  font-size: 1rem;
-  line-height: 2rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  line-height: 2.5rem;
+  text-align: center;
 }
 </style>

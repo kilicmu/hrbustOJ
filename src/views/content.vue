@@ -1,6 +1,6 @@
 <template>
   <Content :style="{padding: '0 50px'}">
-    <Breadcrumb :style="{margin: '40px 0'}"></Breadcrumb>
+    
     <Card>
       <div style="min-height: 1600px;" clearfix>
         <index-show></index-show>
@@ -21,7 +21,7 @@
 <style scoped>
 #line {
   position: absolute;
-  top: 1100px;
+  top: 1000px;
   font-size: 1.5rem;
   color: rgba(28, 202, 255, 0.863);
 }
@@ -42,7 +42,7 @@ export default {
     menu() {
       this.scroll =
         document.body.scrollTop || document.documentElement.scrollTop;
-      console.log(this.scroll);
+      // console.log(this.scroll);
     }
   },
   mounted() {

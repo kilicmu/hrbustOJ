@@ -15,8 +15,11 @@ import './styles/animate.css'
 import newLi from './views/newLi.vue'
 import echarts from "echarts";
 import VueResource from 'vue-resource'
+import './js/textline.js'
+import $ from 'jquery'
+import './js/textline.js'
 
-import './js/adapt.js'
+Vue.prototype.CODE_SUBMIT_URL = "/problem/submit";
 
 
 
@@ -55,5 +58,16 @@ new Vue({
     el: '#app',
     router: router,
 
-    render: h => h(App)
+    render: h => h(App),
+    mounted() {
+        document.documentElement.style.fontSize = "21.17px";
+    }
 });
+
+
+
+
+window.onresize = function () {
+    var w = document.documentElement.offsetWidth;
+    document.documentElement.style.fontSize = w / 100 + 'px';
+}

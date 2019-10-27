@@ -1,29 +1,29 @@
 <template>
-  <Header :theme="theme" class="head_box">
-    <Menu mode="horizontal" :theme="theme" active-name="1" id="head" if-show="show" replace=true>
+  <Header class="head_box">
+    <Menu mode="horizontal" active-name="1" id="head" replace="true">
       <div id="school_icon">
         <div id="icon"></div>
       </div>
-      <p id="school_name">hrbustOnlineJudge</p>
+      <p id="school_name" v-if="headershow">hrbustOnlineJudge</p>
 
-      <div id="group">
-        <MenuItem name="1" to="/">
+      <div id="group" append="true">
+        <MenuItem name="home" to="/">
           <Icon type="ios-home" />Home
         </MenuItem>
 
-        <MenuItem name="2" to="/problems">
+        <MenuItem name="problems" to="/problems">
           <Icon type="md-code" />Problems
         </MenuItem>
-        <MenuItem name="3">
+        <MenuItem name="contest">
           <Icon type="md-trophy" />Contest
         </MenuItem>
-        <MenuItem name="4">
+        <MenuItem name="status">
           <Icon type="md-stats" />Status
         </MenuItem>
-        <MenuItem name="5">
+        <MenuItem name="rank">
           <Icon type="ios-people" />Rank
         </MenuItem>
-        <Submenu name="6">
+        <Submenu name="about">
           <template slot="title">
             <Icon type="ios-menu" />About
           </template>
@@ -42,7 +42,7 @@
         </span>
 
         <button type="button" class="ivu-btn ivu-btn-text ivu-btn-large">
-          <span>登录</span>
+          <span>Login in</span>
         </button>
 
         <Dropdown id="login">
@@ -65,7 +65,20 @@
 export default {
   data() {
     return {
-      show: false
+      show: false,
+      w: "1600",
+      headershow: true
+    };
+  },
+  methods: {},
+
+  mounted() {
+    window.onresize = () => {
+      if (window.innerWidth >= 1400) {
+        this.headershow = true;
+      } else {
+        this.headershow = false;
+      }
     };
   }
 };

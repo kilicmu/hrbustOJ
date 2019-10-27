@@ -40,14 +40,14 @@
 <template>
   <div class="layout">
     <Layout>
-      <all-header></all-header>
+      <all-header id="header"></all-header>
+      <Breadcrumb :style="{margin: '30px'}"></Breadcrumb>
       <transition mode="out-in">
         <router-view></router-view>
       </transition>
       <Footer class="layout-footer-center">2019 &copy; hrbustOJ</Footer>
     </Layout>
     <BackTop></BackTop>
-    
   </div>
 </template>
 <script>
