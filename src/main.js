@@ -18,16 +18,18 @@ import VueResource from 'vue-resource'
 import './js/textline.js'
 import $ from 'jquery'
 import './js/textline.js'
-
-Vue.prototype.CODE_SUBMIT_URL = "/problem/submit";
-
-
+import fireKeyEvent from './js/simulate_keydown.js'
+import VueClipboard from 'vue-clipboard2'
+import api from "./js/api.js"
 
 Vue.prototype.$echarts = echarts;
+Vue.prototype.$firekeyevent = fireKeyEvent
 
 Vue.use(VueRouter);
 Vue.use(ViewUI);
 Vue.use(VueResource);
+Vue.use(VueClipboard);
+
 
 // 路由配置
 const RouterConfig = {
@@ -63,8 +65,6 @@ new Vue({
         document.documentElement.style.fontSize = "21.17px";
     }
 });
-
-
 
 
 window.onresize = function () {

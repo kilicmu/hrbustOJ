@@ -9,16 +9,16 @@
         },
         {
             "id": 2,
-            "title": "测试题1",
-            "acceptance": "0.45",
+            "title": "测试题2",
+            "acceptance": "0.452",
             "level": 2,
             "total": 10,
             "pass": true
         }, {
             "id": 3,
-            "title": "测试题1",
-            "acceptance": "0.45",
-            "level": 1,
+            "title": "测试题3",
+            "acceptance": "0.425",
+            "level": 3,
             "total": 10,
             "pass": false
         }, {

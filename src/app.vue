@@ -41,7 +41,7 @@
   <div class="layout">
     <Layout>
       <all-header id="header"></all-header>
-      <Breadcrumb :style="{margin: '30px'}"></Breadcrumb>
+      <Breadcrumb :style="{margin: '15px'}"></Breadcrumb>
       <transition mode="out-in">
         <router-view></router-view>
       </transition>

@@ -13,6 +13,7 @@
                 <Button class="title_tags" shape="circle" type="success">Easys</Button>
                 <Button class="title_tags" shape="circle" type="warning">Mediums</Button>
                 <Button class="title_tags" shape="circle" type="error">Hards</Button>
+                
 
                 <div id="flush_and_search">
                   <Input
@@ -121,6 +122,7 @@
 
 .title_tags {
   margin-left: 20px;
+  height: 1px;
 }
 
 #page {

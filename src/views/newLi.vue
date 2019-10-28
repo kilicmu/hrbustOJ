@@ -14,9 +14,9 @@
       <Col class="col" span="4">{{item.acceptance}}</Col>
       <Col class="col" span="4">{{item.level}}</Col>
       <Col class="col" span="4">
-        <Button type="success" shape="circle" class="tag" v-if="item.level == 1">Easy</Button>
-        <Button type="warning" shape="circle" class="tag" v-else-if="item.level == 2">Middel</Button>
-        <Button type="error" shape="circle" class="tag" v-else-if="item.level == 3">Hard</Button>
+        <Tag color="success" class="tag" v-if="item.level === 1">Easy</Tag>
+        <Tag color="warning" class="tag" v-if="item.level === 2">Medium</Tag>
+        <Tag color="error" class="tag" v-if="item.level === 3">Hard</Tag>
       </Col>
     </Row>
   </div>
@@ -60,7 +60,6 @@
 }
 
 .tag {
-  
   text-align: center;
   font-size: 12px;
 }
