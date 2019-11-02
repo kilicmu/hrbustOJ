@@ -2,8 +2,7 @@ export default {
     fireKeyEvent(el, evtType, keyCode) {
         var doc = el.ownerDocument,
             win = doc.defaultView || doc.parentWindow,
-            evtObj;
-        if (doc.createEvent) {
+            evtObj;        if (doc.createEvent) {
             if (win.KeyEvent) {
                 evtObj = doc.createEvent('KeyEvents');
                 evtObj.initKeyEvent(evtType, true, true, win, false, false, false, false, keyCode, 0);

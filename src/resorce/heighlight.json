@@ -1,3 +1,0 @@
-["void", "char", "short", "int", "long", "float", "double", "sizeof", "signed", "unsigned", "struct", "union", "enum", "typedef",
-    "auto", "static", "extern", "register", "const", "volatile", "if", "else", "for", "while", "do", "switch", "case", "fault", "goto", "break", "continue", "return"
-]

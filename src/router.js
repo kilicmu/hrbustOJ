@@ -3,15 +3,15 @@ const routers = [{
         meta: {
             title: 'content'
         },
-        component: (resolve) => require(['./views/content.vue'], resolve)
+        component: (resolve) => require(['@/views/home/home.vue'], resolve)
     },
     {
         path: '/problems',
-        component: (resolve) => require(['./views/problems.vue'], resolve),
+        component: (resolve) => require(['@/views/problems.vue'], resolve),
     },
     {
-        path: '/problem/:problem_id',
-        component: (resolve) => require(['./views/answer.vue'], resolve),
+        path: '/problems/:problem_id',
+        component: (resolve) => require(['@/views/answer/answer.vue'], resolve),
     }
 ];
 export default routers;

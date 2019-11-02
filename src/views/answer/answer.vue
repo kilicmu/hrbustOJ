@@ -203,13 +203,13 @@ textarea {
             <Tooltip content="copy" class="circle_button" id="copyIt">
               <Button icon="ios-copy-outline" @click="doCopy(item.in)" shape="circle"></Button>
             </Tooltip>
-            <p class="introduce">In Demo[{{item.id}}]:</p>
+            <p class="introduce">In Demo&nbsp;{{item.id}}:</p>
 
-            <span class="problem_introduce">[{{item.in}}]</span>
+            <span class="problem_introduce">{{item.in}}</span>
 
-            <p class="introduce">Out Demo[{{item.id}}]:</p>
+            <p class="introduce">Out Demo&nbsp;{{item.id}}:</p>
 
-            <span class="problem_introduce">[{{item.out}}]</span>
+            <span class="problem_introduce">{{item.out}}</span>
           </Card>
         </Row>
       </Col>
@@ -246,12 +246,11 @@ textarea {
 
 
 <script>
-import fireKeyEvent from "../js/simulate_keydown.js";
 export default {
   data() {
     return {
       split: 0.5,
-      height_light: require("../resorce/heighlight.json"),
+
       problem_title: "A+B Problem",
       problem_introduce:
         "请计算两个整数的和并输出结果。注意不要有不必要的输出，比如'请输入 a 和 b 的值: '，示例代码见隐藏部分。",
@@ -299,26 +298,16 @@ export default {
       this.tabs++;
     },
     handleUpload(file) {
-      try {
-        let reader = new FileReader();
-        if (typeof FileReader === "undefined") {
-          this.$Message.error("您的浏览器不支持FileReader接口");
-          return false;
-        }
-        reader.readAsText(file, "utf8");
-        reader.onload = () => {
-          this.code = reader.result;
-        };
-      } catch (e) {
-        alert(e);
-      } finally {
-        fireKeyEvent.fireKeyEvent(
-          document.getElementById("o_code_area"),
-          "keydown",
-          10
-        );
+      let reader = new FileReader();
+      if (typeof FileReader === "undefined") {
+        this.$Message.error("您的浏览器不支持FileReader接口");
         return false;
       }
+      reader.readAsText(file, "utf8");
+      reader.onload = () => {
+        this.code = reader.result;
+      };
+      return false;
     },
     give_up() {
       window.location.href = "/problems";
@@ -331,11 +320,14 @@ export default {
       var pjson = { type: type, data: data };
       console.log(pjson);
       this.$http.post("/submit", pjson).then(
-        () => {},
-        () => {
-          this.$Notice.error({
-            title: "提交错误,请检查网络环境"
-          });
+        data => {},
+        err => {
+          if (err) {
+            this.$Notice.error({
+              title: "error"
+            });
+            throw err;
+          }
         }
       ); //提交后台
     },

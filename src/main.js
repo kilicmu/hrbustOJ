@@ -1,29 +1,29 @@
 import Vue from 'vue';
 import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css'
 import VueRouter from 'vue-router';
 import Routers from './router';
 import Util from './libs/util';
-import App from './app.vue';
-import indexShow from './views/home.vue'
-import answer from './views/answer.vue'
-import mainContent from './views/content.vue'
-import threeCards from './views/threeCards.vue'
-import 'view-design/dist/styles/iview.css'
-import Header from './views/header.vue'
-import processPic from './views/process.vue'
-import './styles/animate.css'
-import newLi from './views/newLi.vue'
+
+
+/*templates*/
+import App from '@/app.vue';
+import indexShow from '@/views/home/home.vue'
+import threeCards from '@/views/home/threeCards.vue'
+import Header from '@/views/header.vue'
+import processPic from '@/views/process.vue'
+import newLi from '@/views/newLi.vue'
+
+import '@/styles/animate.css'
+import '@/js/textline.js'
+import api from "@/js/api.js"
+
+/* 第三方 */
 import echarts from "echarts";
 import VueResource from 'vue-resource'
-import './js/textline.js'
-import $ from 'jquery'
-import './js/textline.js'
-import fireKeyEvent from './js/simulate_keydown.js'
 import VueClipboard from 'vue-clipboard2'
-import api from "./js/api.js"
 
 Vue.prototype.$echarts = echarts;
-Vue.prototype.$firekeyevent = fireKeyEvent
 
 Vue.use(VueRouter);
 Vue.use(ViewUI);
@@ -50,7 +50,6 @@ router.afterEach((to, from, next) => {
 });
 //组件注册
 Vue.component('index-show', indexShow)
-Vue.component('main-content', mainContent)
 Vue.component('all-header', Header)
 Vue.component('three-cards', threeCards)
 Vue.component('process-pic', processPic)
@@ -62,12 +61,19 @@ new Vue({
 
     render: h => h(App),
     mounted() {
-        document.documentElement.style.fontSize = "21.17px";
+        if (document.documentElement.offsetWidth > 1300) {
+            document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
+        } else {
+            document.documentElement.style.fontSize = 13 + "px";
+        }
     }
 });
 
 
 window.onresize = function () {
-    var w = document.documentElement.offsetWidth;
-    document.documentElement.style.fontSize = w / 100 + 'px';
+    if (document.documentElement.offsetWidth > 1300) {
+        document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
+    } else {
+        document.documentElement.style.fontSize = 13 + "px";
+    }
 }

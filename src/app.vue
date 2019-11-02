@@ -4,7 +4,7 @@
   background: #f5f7f9;
   position: relative;
   border-radius: 0.25rem;
-
+  min-width: 1300px !important;
   overflow: hidden;
 }
 .layout-logo {
@@ -26,6 +26,10 @@
   text-align: center;
 }
 
+.ivu-layout-content {
+  min-width: 1300px;
+}
+
 .v-enter,
 .v-leave-to {
   opacity: 0;
@@ -41,6 +45,7 @@
   <div class="layout">
     <Layout>
       <all-header id="header"></all-header>
+
       <Breadcrumb :style="{margin: '15px'}"></Breadcrumb>
       <transition mode="out-in">
         <router-view></router-view>
