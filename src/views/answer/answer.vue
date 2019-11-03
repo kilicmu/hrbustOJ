@@ -18,13 +18,7 @@ lcard_description {
 #rcard {
   width: 100%;
   margin-left: 20px;
-  min-width: 1000px;
-}
-
-textarea {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  /* min-width: 300px; */
 }
 
 .textarea-group {
@@ -47,13 +41,13 @@ textarea {
   background-color: rgb(255, 255, 255);
   resize: none;
   overflow: scroll;
-
   overflow-x: hidden;
 }
 
 #tool {
   text-align: center;
   position: relative;
+  width: 100%;
 }
 .ivu-upload {
   display: inline-block;

@@ -2,8 +2,8 @@
   <div>
     <Row v-for="item in questions" :key="item.id" style="{weight:100%}" id="a_li">
       <Col span="2" class="col">
-        <Icon type="md-done-all" :v-if="item.pass" />
-        <Icon type="md-lock" :v-else="item.pass" />
+        <Icon type="md-done-all" v-if="item.pass" />
+        <Icon type="md-lock" v-else="item.pass" />
       </Col>
       <Col class="col" span="2">{{item.id}}</Col>
 
