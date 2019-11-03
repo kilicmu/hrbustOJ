@@ -18,7 +18,7 @@ lcard_description {
 #rcard {
   width: 100%;
   margin-left: 20px;
-  /* min-width: 300px; */
+  
 }
 
 .textarea-group {
