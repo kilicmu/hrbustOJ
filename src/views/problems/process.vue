@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-import "../js/walden.js";
+import "./walden";
 export default {
   data: function() {
     return {
@@ -97,7 +97,6 @@ export default {
   },
   mounted() {
     this.drawChart();
-    
   },
   computed: {
     // 计算属性的 getter

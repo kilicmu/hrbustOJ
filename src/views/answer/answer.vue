@@ -18,7 +18,6 @@ lcard_description {
 #rcard {
   width: 100%;
   margin-left: 20px;
-  
 }
 
 .textarea-group {
@@ -136,6 +135,10 @@ lcard_description {
 
 #statistic {
   float: right;
+}
+
+#demo {
+  margin-top: 10px;
 }
 </style>
 <template>
@@ -363,7 +366,6 @@ export default {
       color: "#000000",
       display: "inline-block"
     });
-    console.log(this.height_light);
   }
 };
 </script>

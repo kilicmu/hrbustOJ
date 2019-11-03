@@ -7,7 +7,7 @@ const routers = [{
     },
     {
         path: '/problems',
-        component: (resolve) => require(['@/views/problems.vue'], resolve),
+        component: (resolve) => require(['@/views/problems/problems.vue'], resolve),
     },
     {
         path: '/problems/:problem_id',

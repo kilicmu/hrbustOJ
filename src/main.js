@@ -11,12 +11,12 @@ import App from '@/app.vue';
 import indexShow from '@/views/home/home.vue'
 import threeCards from '@/views/home/threeCards.vue'
 import Header from '@/views/header.vue'
-import processPic from '@/views/process.vue'
-import newLi from '@/views/newLi.vue'
+import processPic from '@/views/problems/process.vue'
+import newLi from '@/views/problems/newLi.vue'
 
 import '@/styles/animate.css'
 import '@/js/textline.js'
-import api from "@/js/api.js"
+import api from "@/api.js"
 
 /* 第三方 */
 import echarts from "echarts";
