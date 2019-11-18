@@ -35,7 +35,7 @@
 
 .box {
   margin-left: 6rem;
-  margin-top: 1200px;
+  margin-top: 1100px;
 
   float: left;
 }

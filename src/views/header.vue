@@ -6,7 +6,7 @@
 
 #head {
   box-shadow: 2px 2px 2px #adadad79;
-  width: 100%;
+  
 }
 
 #group {
@@ -60,7 +60,7 @@
       <MenuItem name="problems" to="/problems">
         <Icon type="md-code" />Problems
       </MenuItem>
-      <MenuItem name="contest">
+      <MenuItem name="contest" to="/contest">
         <Icon type="md-trophy" />Contest
       </MenuItem>
       <MenuItem name="status">

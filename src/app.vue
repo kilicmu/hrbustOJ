@@ -40,13 +40,19 @@
 .v-leave-active {
   transition: all 0.4s ease;
 }
+
+#header {
+  width: 100%;
+  top: 0;
+  position: fixed;
+}
 </style>
 <template>
   <div class="layout">
     <Layout>
       <all-header id="header"></all-header>
 
-      <Breadcrumb :style="{margin: '15px'}"></Breadcrumb>
+      <Breadcrumb :style="{margin: '50px'}"></Breadcrumb>
       <transition mode="out-in">
         <router-view></router-view>
       </transition>

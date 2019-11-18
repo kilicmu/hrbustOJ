@@ -12,6 +12,9 @@ const routers = [{
     {
         path: '/problems/:problem_id',
         component: (resolve) => require(['@/views/answer/answer.vue'], resolve),
+    }, {
+        path: '/contest',
+        component: (resolve) => require(['@/views/contest/contest.vue'], resolve),
     }
 ];
 export default routers;

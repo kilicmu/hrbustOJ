@@ -31,27 +31,6 @@
   text-align: center;
   border-bottom: 1px solid rgba(163, 163, 163, 0.397);
 }
-.super-link {
-  position: relative;
-  text-decoration: none;
-  color: rgba(0, 174, 255, 0.87);
-}
-
-.super-link::after {
-  content: "";
-  width: 100%;
-  height: 1px; /*设置伪元素的高度，这里是下划线的粗细*/
-  position: absolute;
-  top: 100%;
-  left: 0;
-
-  background-color: currentColor; /*当前标签继承的文字颜色，这里让伪元素的背景色与父元素的文字颜色相同*/
-  transform: scale(0);
-  transition: all 0.35s;
-}
-.super-link:hover::after {
-  transform: scale(1);
-}
 
 #position {
   width: 100%;

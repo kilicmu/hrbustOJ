@@ -111,10 +111,10 @@ export default {
   },
   watch: {
     scroll: function(old) {
-      if (old >= 600) {
+      if (old >= 400) {
         this.flag = true;
       }
-      if (old < 600) {
+      if (old < 400) {
         this.flag = false;
       }
     }
