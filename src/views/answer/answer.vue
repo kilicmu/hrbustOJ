@@ -1,4 +1,5 @@
-<style>
+<style lang='scss'>
+@import "~@/sass/config.scss";
 .demo-split {
   height: 1000px;
   /* border: 1px solid #dcdee2; */
@@ -83,7 +84,7 @@ lcard_description {
 }
 
 .introduce {
-  color: rgb(23, 170, 255);
+  color: $standard-info;
   font-size: 26px;
   margin-top: 10px;
 }
@@ -98,7 +99,7 @@ lcard_description {
 }
 
 .problem_introduce_t {
-  color: rgba(0, 6, 10, 0.377);
+  color: $standard-context;
   font-size: 21px;
   margin-top: 10px;
   display: block;
@@ -197,7 +198,7 @@ lcard_description {
         <div id="temp"></div>
         <Row v-for="item in problem_demo" :key="item.id">
           <Card id="demo">
-            <Tooltip content="copy" class="circle_button" id="copyIt">
+            <Tooltip content="copy demo in" class="circle_button" id="copyIt">
               <Button icon="ios-copy-outline" @click="doCopy(item.in)" shape="circle"></Button>
             </Tooltip>
             <p class="introduce">In Demo&nbsp;{{item.id}}:</p>

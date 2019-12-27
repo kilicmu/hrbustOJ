@@ -1,3 +1,20 @@
+<style type='scss'>
+#box {
+  width: 100%;
+}
+
+.box {
+  margin-left: 6rem;
+  margin-top: 1100px;
+  float: left;
+  img {
+    width: 130px;
+    height: 130px;
+    margin: 60px 0;
+  }
+}
+</style>
+
 <template>
   <Row id="box">
     <Col span="8">
@@ -28,23 +45,7 @@
   </Row>
 </template>
 
-<style>
-#box {
-  width: 100%;
-}
 
-.box {
-  margin-left: 6rem;
-  margin-top: 1100px;
-
-  float: left;
-}
-.box img {
-  width: 130px;
-  height: 130px;
-  margin: 60px 0;
-}
-</style>
 
 <script>
 export default {};

@@ -1,3 +1,51 @@
+<style lang="scss">
+@import "~@/sass/config.scss";
+.topic {
+  font-weight: bolder;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: $standard-border;
+}
+
+.title {
+  strong {
+    font-size: 30px;
+  }
+  &_tags {
+    position: absolute;
+    top: 80px;
+    left: 3.875rem;
+    right: 3.875rem;
+    height: 70%;
+  }
+}
+
+.question_list {
+  margin-top: 60px;
+  text-align: center;
+  border: false;
+  width: 100%;
+}
+
+.right_cards {
+  margin-left: 10px;
+  @for $i from 2 through 3 {
+    .right_card_#{$i} {
+      margin-top: 5px;
+    }
+  }
+}
+
+.page {
+  margin-top: 50px;
+  margin-right: 30px;
+  float: right;
+}
+
+#flush_and_search {
+  float: right;
+}
+</style>
 <template>
   <Content :style="{padding: '0 50px'}">
     <Row type="flex" justify="center" align="top" class="code-row-bg">
@@ -5,9 +53,9 @@
         <Card>
           <div></div>
           <new-li></new-li>
-          <div id="title_strong">
+          <div class="title">
             <strong>Problem List:</strong>
-            <div id="title_tags">
+            <div class="title_tags">
               <div id="flush_and_search">
                 <Input
                   v-model="search_val"
@@ -24,8 +72,8 @@
               </div>
             </div>
 
-            <List style="{border:false; width:100%;}" id="question_list">
-              <div id="topic">
+            <List class="question_list">
+              <div class="topic">
                 <Row>
                   <Col span="2">
                     <Icon type="md-done-all" />
@@ -40,7 +88,7 @@
               <new-li :questions="questions" id="a_line"></new-li>
             </List>
             <Page
-              id="page"
+              class="page"
               show-elevator
               :page-size="page_size"
               placement="top"
@@ -51,18 +99,18 @@
         </Card>
       </Col>
       <Col span="4">
-        <div id="right_cards">
-          <Card id="right_card_1">
+        <div class="right_cards">
+          <Card class="right_card_1">
             <p slot="title">Your Progress</p>
             <process-pic></process-pic>
           </Card>
-          <Card id="right_card_2">
+          <Card class="right_card_2">
             <p slot="title">Top Hits</p>
             <p>Content of card</p>
             <p>Content of card</p>
             <p>Content of card</p>
           </Card>
-          <Card id="right_card_3">
+          <Card class="right_card_3">
             <p slot="title">Tags</p>
           </Card>
         </div>
@@ -70,61 +118,6 @@
     </Row>
   </Content>
 </template>
-
-<style>
-#topic {
-  font-weight: bolder;
-  padding-top: 20px;
-  padding-bottom: 20px;
-
-  border-bottom: 1px solid rgba(163, 163, 163, 0.212);
-}
-
-#flush_and_search {
-  float: right;
-}
-
-#title_strong strong {
-  font-size: 30px;
-}
-
-#question_list {
-  margin-top: 60px;
-  text-align: center;
-}
-
-#right_cards {
-  margin-left: 10px;
-}
-#ctl_list {
-  float: right;
-}
-
-#title {
-  text-align: left;
-}
-
-#title_tags {
-  position: absolute;
-  top: 80px;
-  left: 3.875rem;
-  right: 3.875rem;
-  height: 70%;
-}
-
-.title_tags {
-  margin-left: 20px;
-  height: 1px;
-}
-
-#page {
-  margin-top: 50px;
-  margin-right: 30px;
-  float: right;
-}
-
-
-</style>
 
 <script>
 export default {

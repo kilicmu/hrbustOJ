@@ -16,6 +16,7 @@ import newLi from '@/views/problems/newLi.vue'
 
 import '@/styles/animate.css'
 import '@/js/textline.js'
+import '@/sass/config.scss'
 import api from "@/api.js"
 
 /* 第三方 */
@@ -70,10 +71,10 @@ new Vue({
 });
 
 
-window.onresize = function () {
-    if (document.documentElement.offsetWidth > 1300) {
-        document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
-    } else {
-        document.documentElement.style.fontSize = 13 + "px";
-    }
-}
+// window.onresize = function () {
+//     if (document.documentElement.offsetWidth > 1300) {
+//         document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
+//     } else {
+//         document.documentElement.style.fontSize = 13 + "px";
+//     }
+// }

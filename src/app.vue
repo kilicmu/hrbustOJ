@@ -1,49 +1,40 @@
-<style scoped>
+<style lang="scss">
+@import "~@/sass/config.scss";
+@include switch-animation;
 .layout {
-  border: 1px solid #d7dde4;
-  background: #f5f7f9;
+  border: $standard-border;
+  background: $standard-background-color;
   position: relative;
   border-radius: 0.25rem;
   min-width: 1300px !important;
   overflow: hidden;
+  &-logo {
+    width: 6.25rem;
+    height: 1.875rem;
+    background: #5b6270;
+    border-radius: 0.1875rem;
+    float: left;
+    position: relative;
+    top: 0.9375rem;
+    left: 1.25rem;
+  }
+  &-nav {
+    width: 26.25rem;
+    margin: 0 auto;
+    margin-right: 1.25rem;
+  }
+  &-footer-center {
+    text-align: center;
+  }
 }
-.layout-logo {
-  width: 6.25rem;
-  height: 1.875rem;
-  background: #5b6270;
-  border-radius: 0.1875rem;
-  float: left;
-  position: relative;
-  top: 0.9375rem;
-  left: 1.25rem;
-}
-.layout-nav {
-  width: 26.25rem;
-  margin: 0 auto;
-  margin-right: 1.25rem;
-}
-.layout-footer-center {
-  text-align: center;
-}
-
 .ivu-layout-content {
   min-width: 1300px;
-}
-
-.v-enter,
-.v-leave-to {
-  opacity: 0;
-  transform: translateY(100px);
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.4s ease;
 }
 
 #header {
   width: 100%;
   top: 0;
+  min-width: 1300px !important;
   position: fixed;
 }
 </style>
@@ -51,8 +42,7 @@
   <div class="layout">
     <Layout>
       <all-header id="header"></all-header>
-
-      <Breadcrumb :style="{margin: '50px'}"></Breadcrumb>
+      <Breadcrumb :style="{margin: '40px'}"></Breadcrumb>
       <transition mode="out-in">
         <router-view></router-view>
       </transition>
