@@ -55,7 +55,9 @@
         <div style="position: relative">
           <div id="bck_pic"></div>
 
-          <img src="~@/images/header-teamwork.svg" id="header_teamwork" />
+          <img src="~@/images/header-teamwork1.svg" id="header_teamwork" v-if="randnum===1" />
+          <img src="~@/images/header-teamwork2.svg" id="header_teamwork" v-if="randnum===2" />
+          <img src="~@/images/header-teamwork3.svg" id="header_teamwork" v-if="randnum===3" />
           <div id="info">
             <h2>An OJ platform</h2>
             <p>You can learn the algorithm here</p>
@@ -95,7 +97,13 @@
 <script>
 export default {
   data() {
-    return { b_append: false, scroll: null, flag: false };
+    return {
+      b_append: false,
+      scroll: null,
+      flag: false,
+      pic_url: "~@/images/header-teamwork",
+      randnum: 1
+    };
   },
   methods: {
     menu() {
@@ -106,6 +114,21 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.menu);
+    //获取随机数
+    this.randnum = Math.ceil(Math.random() * 3);
+    //挂载动态脚本(全局挂载出现失效的状况，在此页面再此挂载)
+    if (document.documentElement.offsetWidth > 1300) {
+            document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
+        } else {
+            document.documentElement.style.fontSize = 13 + "px";
+        }
+    window.onresize = function () {
+    if (document.documentElement.offsetWidth > 1300) {
+        document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
+    } else {
+        document.documentElement.style.fontSize = 13 + "px";
+    }
+}
   },
   watch: {
     scroll: function(old) {

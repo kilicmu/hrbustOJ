@@ -1,13 +1,70 @@
 <style lang="scss">
-.ivu-collapse-header {
-  height: 100px;
+@import "~@/sass/config.scss";
+@import "~@/sass/contest/contest.scss";
+.r_card {
+  @include contest_card("true", rgba(255, 255, 255, 0.767), #ff4800);
+  @include contest_card("false", rgba(31, 31, 31, 0.815), #b3b3b3);
+  &_2 {
+    margin-top: 60px;
+    position: relative;
+    .circle_head {
+      background: url("~@/images/plate.png") no-repeat scroll left center/ 100px
+        100px;
+      height: 100px;
+      width: 100px;
+
+      top: -50px;
+      left: 50%;
+      margin-left: -50px;
+      position: absolute;
+      border-radius: 50%;
+      z-index: 999;
+    }
+    .card {
+      width: 100%;
+      position: absolute;
+    }
+  }
 }
 </style>
 
 <template>
-  <Content :style="{padding: '0 50px'}" id="content"></Content>
+  <Content :style="{padding: '0 50px'}">
+    <Row>
+      <Col span="16">
+        <Card class="l_card"></Card>
+      </Col>
+      <Col span="8">
+        <div class="r_card">
+          <Card class="r_card_1_true" :to="contest_url" v-show="contesting">
+            <div class="info">
+              <p>您有正在进行的比赛</p>
+              <p>点击快速加入 ></p>
+            </div>
+
+            <img src="~@/images/fire.png" />
+          </Card>
+          <Card class="r_card_1_false" v-show="!contesting">
+            <div class="info" v-show="!contesting">
+              <p>暂时没有比赛哦</p>
+              <p>休息一下吧！</p>
+            </div>
+          </Card>
+          <div class="r_card_2">
+            <div class="circle_head"></div>
+
+            <Card class="card"></Card>
+          </div>
+        </div>
+      </Col>
+    </Row>
+  </Content>
 </template>
 
 <script>
-export default {};
+export default {
+  data: function() {
+    return { contest_url: "/contest/1/", contesting: false };
+  }
+};
 </script>

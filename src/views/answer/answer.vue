@@ -2,53 +2,19 @@
 @import "~@/sass/config.scss";
 .demo-split {
   height: 1000px;
-  /* border: 1px solid #dcdee2; */
-}
-.demo-split-pane {
-  padding: 10px;
-}
-
-#content {
-  height: 100%;
+  &-pane {
+    padding: 10px;
+  }
+  #content {
+    height: 100%;
+  }
 }
 
-lcard_description {
-  margin-right: 20px;
-  min-width: 650px;
-}
 #rcard {
   width: 100%;
   margin-left: 20px;
 }
 
-.textarea-group {
-  margin-top: 30px;
-  box-shadow: 2px 2px 2px 2px rgba(68, 68, 68, 0.212);
-  width: 100% !important;
-  border: none;
-}
-
-.textarea-wrap {
-  height: 1000px !important;
-}
-
-.textareasubmit {
-  height: 1000px;
-  width: 100% !important;
-  font-size: 16px;
-  border: none;
-  outline: none;
-  background-color: rgb(255, 255, 255);
-  resize: none;
-  overflow: scroll;
-  overflow-x: hidden;
-}
-
-#tool {
-  text-align: center;
-  position: relative;
-  width: 100%;
-}
 .ivu-upload {
   display: inline-block;
 }
@@ -113,20 +79,19 @@ lcard_description {
   height: 20px;
 }
 
-#lcard_info {
+#lcard {
   width: 100%;
   display: inline-block;
   color: rgba(51, 51, 51, 0.466);
   margin-right: 10px;
   font-size: 21px;
-}
+  span {
+    float: right;
+  }
 
-#lcard_info span {
-  float: right;
-}
-
-#lcard_statistic {
-  margin-left: 10px;
+  &_statistic {
+    margin-left: 10px;
+  }
 }
 
 #problem_msg {
@@ -134,12 +99,16 @@ lcard_description {
   font-size: 22px;
 }
 
-#statistic {
-  float: right;
-}
-
 #demo {
   margin-top: 10px;
+}
+
+.ivu-poptip-body-content {
+  overflow: hidden !important;
+}
+
+#Filling {
+  height: 20px;
 }
 </style>
 <template>
@@ -155,12 +124,12 @@ lcard_description {
           <Tag color="warning" v-if="difficuly ===2">Medium</Tag>
           <Tag color="error" v-if="difficuly ===3">Hard</Tag>
           <Tag color="geekblue" v-if="pass===1">AC</Tag>
-          <Poptip placement="bottom-end" width="300" id="statistic" style="{white-space: normal}">
+          <Poptip placement="bottom-end" width="300" style="{white-space: normal;float: right;}">
             <Button type="text">
               <Icon type="ios-menu" />
             </Button>
             <div class="api" slot="content">
-              <Card id="lcard_info">
+              <Card id="lcard">
                 <p class="introduce">Info:</p>
                 <Divider />
                 <p>
@@ -217,6 +186,13 @@ lcard_description {
             <Select v-model="l_type" style="width:160px">
               <Option v-for="item in types" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
+            <Select v-model="l_terminal" style="width:80px">
+              <Option
+                v-for="item in terminals"
+                :value="item.value"
+                :key="item.value"
+              >{{ item.label }}</Option>
+            </Select>
             <div id="buttons">
               <Tooltip content="上传" class="circle_button">
                 <Upload action="#" :before-upload="handleUpload">
@@ -235,7 +211,16 @@ lcard_description {
               </Modal>
             </div>
           </div>
-          <textarea name="code_area" v-model="code" class="textareasubmit" id="o_code_area"></textarea>
+          <div id="Filling"></div>
+          <div id="textarea-m">
+            <MonacoEditor
+              :width="editorWidth"
+              height="1000"
+              :theme="l_terminal"
+              v-model="code"
+              :language="l_type"
+            ></MonacoEditor>
+          </div>
         </Card>
       </Col>
     </Row>
@@ -247,8 +232,8 @@ lcard_description {
 export default {
   data() {
     return {
+      //题目信息
       split: 0.5,
-
       problem_title: "A+B Problem",
       problem_introduce:
         "请计算两个整数的和并输出结果。注意不要有不必要的输出，比如'请输入 a 和 b 的值: '，示例代码见隐藏部分。",
@@ -269,26 +254,32 @@ export default {
       },
 
       tabs: 2,
-      code: "", //代码内容
-      show_code: "",
+      code: "start", //代码内容
       difficuly: 1,
-      pass: 1,
+      pass: 1, //0表示通过， 1表示没通过
       types: [
         {
-          value: "1",
+          value: "C",
           label: "C"
         },
         {
-          value: "2",
+          value: "C++",
           label: "C++"
         },
         {
-          value: "3",
+          value: "Java",
           label: "Java"
         }
       ],
-      l_type: "1",
-      b_give_up: false
+      l_type: "C",
+      terminals: [
+        { value: "vs", label: "vs" },
+        { value: "vs-dark", label: "vs-dark" },
+        { value: "hc-black", label: "hc-black" }
+      ],
+      l_terminal: "vs",
+      b_give_up: false,
+      editorWidth: "0"
     };
   },
   methods: {
@@ -340,33 +331,15 @@ export default {
       );
     }
   },
-  watch: {
-    code(newVal, oldVal) {
-      if (
-        newVal.length - oldVal.length == 1 &&
-        newVal[newVal.length - 1] == " "
-      ) {
-        console.log(newVal, oldVal);
-        function isInArray(heighlight, oldVal) {
-          for (var i = 0; i < heighlight.length; i++) {
-            if (oldVal === heighlight[i]) {
-              return true;
-            }
-          }
-          return false;
-        }
-      }
-    }
-  },
   mounted() {
-    console.log(this.$route.params.problem_id); //问题id
-
-    $(".textareasubmit").setTextareaCount({
-      width: "30px",
-      bgColor: "#E9E9E9",
-      color: "#000000",
-      display: "inline-block"
-    });
+    this.editorWidth = document
+      .getElementById("textarea-m")
+      .offsetWidth.toString();
+    window.onresize = () => {
+      this.editorWidth = document
+        .getElementById("textarea-m")
+        .offsetWidth.toString();
+    };
   }
 };
 </script>

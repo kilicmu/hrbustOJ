@@ -41,7 +41,6 @@
   margin-right: 30px;
   float: right;
 }
-
 #flush_and_search {
   float: right;
 }

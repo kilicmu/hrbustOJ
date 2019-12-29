@@ -13,6 +13,7 @@ import threeCards from '@/views/home/threeCards.vue'
 import Header from '@/views/header.vue'
 import processPic from '@/views/problems/process.vue'
 import newLi from '@/views/problems/newLi.vue'
+import MonacoEditor from 'monaco-editor-vue';
 
 import '@/styles/animate.css'
 import '@/js/textline.js'
@@ -55,6 +56,7 @@ Vue.component('all-header', Header)
 Vue.component('three-cards', threeCards)
 Vue.component('process-pic', processPic)
 Vue.component('new-li', newLi)
+Vue.component('MonacoEditor', MonacoEditor)
 
 new Vue({
     el: '#app',
@@ -62,11 +64,11 @@ new Vue({
 
     render: h => h(App),
     mounted() {
-        if (document.documentElement.offsetWidth > 1300) {
-            document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
-        } else {
-            document.documentElement.style.fontSize = 13 + "px";
-        }
+        // if (document.documentElement.offsetWidth > 1300) {
+        //     document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
+        // } else {
+        //     document.documentElement.style.fontSize = 13 + "px";
+        // }
     }
 });
 
