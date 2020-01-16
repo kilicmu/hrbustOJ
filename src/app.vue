@@ -35,6 +35,7 @@
   width: 100%;
   top: 0;
   min-width: 1300px !important;
+  z-index: 999;
   position: fixed;
 }
 </style>

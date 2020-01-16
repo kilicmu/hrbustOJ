@@ -44,6 +44,10 @@
 #flush_and_search {
   float: right;
 }
+
+#title {
+  text-align: left;
+}
 </style>
 <template>
   <Content :style="{padding: '0 50px'}">

@@ -8,16 +8,31 @@ $standard-info:#2db7f5;
 $standard-success:#19be6b;
 $standard-warning:#ff9900;
 $standard-error:#ed4014;
+
 @mixin switch-animation {
-    .v-enter,
-    .v-leave-to {
-      opacity: 0;
-      transform: translateY(100px);
-    }
-  
-    .v-enter-active,
-    .v-leave-active {
-      transition: all 0.4s ease;
-    }
+
+  .v-enter,
+  .v-leave-to {
+    opacity: 0;
+    transform: translateY(100px);
   }
 
+  .v-enter-active,
+  .v-leave-active {
+    transition: all 0.4s ease;
+  }
+}
+
+@mixin switch-list-animation {
+
+  .v-enter,
+  .v-leave-to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .v-enter-active,
+  .v-leave-active {
+    transition: all 0.4s ease;
+  }
+}

@@ -1,25 +1,27 @@
 @mixin contest_card($which, $font-color, $color) {
-    
-      margin-left: 5px;
-      &_1_#{$which} {
-        height: 300px;
-        border-radius: 10px;
-        background-image: linear-gradient(to bottom, lighten($color, 20%), $color);
-        overflow: hidden;
-  
-        p {
-          color: $font-color;
-        }
-        p:nth-child(1) {
-          font-size: 40px;
-          float: left;
-        }
-        p:nth-child(2) {
-          font-size: 20px;
-          margin-top: 220px;
-          margin-right: 20px;
-          float: right;
-        }
-      }
+  margin-left: 5px;
+
+  &_1_#{$which} {
+    height: 250px;
+    border-radius: 10px;
+    background-image: linear-gradient(to bottom, lighten($color, 20%), $color);
+    overflow: hidden;
+    min-width: 200px;
+
+    p {
+      color: $font-color;
     }
-  
+
+    p:nth-child(1) {
+      font-size: 40px;
+      float: left;
+    }
+
+    p:nth-child(2) {
+      font-size: 20px;
+      margin-top: 180px;
+      margin-right: 20px;
+      float: right;
+    }
+  }
+}

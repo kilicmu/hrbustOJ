@@ -6,7 +6,6 @@
 
 #head {
   box-shadow: 2px 2px 2px #adadad79;
-  
 }
 
 #group {
