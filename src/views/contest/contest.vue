@@ -1,7 +1,11 @@
 <style lang="scss">
 @import "~@/sass/config.scss";
 @import "~@/sass/contest/contest.scss";
-@import "~@/styles/animate.css";
+
+.l_card {
+  margin-right: 5px;
+  height: 1100px;
+}
 .r_card {
   @include contest_card("true", rgba(255, 255, 255, 0.767), #ff4800);
   @include contest_card("false", rgba(31, 31, 31, 0.815), #b3b3b3);
@@ -24,6 +28,7 @@
     }
     .card {
       width: 100%;
+      height: 620px;
       strong {
         color: $standard-context;
         font-size: 24px;
@@ -31,7 +36,6 @@
       rank-li {
         margin-top: 200px;
         position: absolute;
-        @include switch-list-animation;
       }
     }
   }
@@ -44,7 +48,11 @@
   <Content :style="{padding: '0 50px'}">
     <Row>
       <Col span="16">
-        <Card class="l_card"></Card>
+        <Card class="l_card">
+          <transition>
+            <contest-list :contest_data="contest_data"></contest-list>
+          </transition>
+        </Card>
       </Col>
       <Col span="8">
         <div class="r_card">
@@ -67,7 +75,7 @@
             <Card class="card">
               <strong>上期排名</strong>
 
-              <rank-li :rank_list="rank_data"></rank-li>
+              <rank-li :contest_data="contest_data"></rank-li>
             </Card>
           </div>
         </div>
@@ -78,17 +86,20 @@
 
 <script>
 import rankLi from "./rankLi.vue";
-import test_data from "./test.json";
+import contestList from "./contestList.vue";
+import data from "./test.json";
+
 export default {
   data: function() {
     return {
-      contest_url: "/contest/1/",
-      contesting: true,
-      rank_data: test_data
+      contest_url: "/contest/1/", //快速参加url
+      contesting: true, //是否正在比赛
+      contest_data: data //页面整体数据
     };
   },
   components: {
-    "rank-li": rankLi
+    "rank-li": rankLi,
+    "contest-list": contestList
   }
 };
 </script>

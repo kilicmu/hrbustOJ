@@ -1,6 +1,9 @@
 <style lang="scss">
+#r_tmp {
+  height: 620px;
+  position: relative;
+}
 .rank_li {
-  height: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
   line-height: 32px;
@@ -14,11 +17,13 @@
 }
 .page {
   margin-top: 10px;
-  text-align: center;
+  bottom: 80px;
+  right: 0;
+  position: absolute;
 }
 </style>
 <template>
-  <div>
+  <div id="r_tmp">
     <Row class="rank_li">
       <Col span="4">#</Col>
       <Col span="14" class="user">user</Col>
@@ -31,23 +36,31 @@
       </Col>
       <Col class="col" span="6">{{item.score}}</Col>
     </Row>
-    <div class="page">
-      <Page :total="rank_list.length" @on-change="on_change" />
-    </div>
+    <Page
+      v-show="show_change_page"
+      :total="contest_data.rank_list.length"
+      @on-change="on_change"
+      class="page"
+    />
   </div>
 </template>
 <script>
 export default {
-  props: ["rank_list"],
+  props: ["contest_data"],
 
   data() {
-    return { l_data: this.rank_list.slice(0, 10), page_size: 10 };
+    return {
+      l_data: this.contest_data.rank_list.slice(0, 10),
+      page_size: 10,
+      show_change_page: this.contest_data.rank_list.length > 10
+    };
   },
   methods: {
     on_change: function(page) {
-      this.l_data = this.rank_list.slice((page - 1) * 10, page * 10);
-      //   l_data = this.data.slice(page, page + 10);
-      //   console.log(this.l_data);
+      this.l_data = this.contest_data.rank_list.slice(
+        (page - 1) * 10,
+        page * 10
+      );
     }
   },
   mounted() {}

@@ -14,12 +14,12 @@ $standard-error:#ed4014;
   .v-enter,
   .v-leave-to {
     opacity: 0;
-    transform: translateY(100px);
+    transform: translateY(20px);
   }
 
   .v-enter-active,
   .v-leave-active {
-    transition: all 0.4s ease;
+    transition: all 0.2s ease;
   }
 }
 
@@ -33,6 +33,6 @@ $standard-error:#ed4014;
 
   .v-enter-active,
   .v-leave-active {
-    transition: all 0.4s ease;
+    transition: all 0.2s ease;
   }
 }

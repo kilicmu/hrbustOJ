@@ -36,7 +36,7 @@
   }
 }
 
-.page {
+.page_li {
   margin-top: 50px;
   margin-right: 30px;
   float: right;
@@ -91,7 +91,7 @@
               <new-li :questions="questions" id="a_line"></new-li>
             </List>
             <Page
-              class="page"
+              class="page_li"
               show-elevator
               :page-size="page_size"
               placement="top"
