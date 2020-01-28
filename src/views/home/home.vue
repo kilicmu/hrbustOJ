@@ -118,17 +118,19 @@ export default {
     this.randnum = Math.ceil(Math.random() * 3);
     //挂载动态脚本(全局挂载出现失效的状况，在此页面再此挂载)
     if (document.documentElement.offsetWidth > 1300) {
-            document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
-        } else {
-            document.documentElement.style.fontSize = 13 + "px";
-        }
-    window.onresize = function () {
-    if (document.documentElement.offsetWidth > 1300) {
-        document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
+      document.documentElement.style.fontSize =
+        document.documentElement.offsetWidth / 100 + "px";
     } else {
-        document.documentElement.style.fontSize = 13 + "px";
+      document.documentElement.style.fontSize = 13 + "px";
     }
-}
+    window.onresize = function() {
+      if (document.documentElement.offsetWidth > 1300) {
+        document.documentElement.style.fontSize =
+          document.documentElement.offsetWidth / 100 + "px";
+      } else {
+        document.documentElement.style.fontSize = 13 + "px";
+      }
+    };
   },
   watch: {
     scroll: function(old) {

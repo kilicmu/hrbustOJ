@@ -62,23 +62,22 @@
       <MenuItem name="contest" to="/contest">
         <Icon type="md-trophy" />Contest
       </MenuItem>
-      <MenuItem name="status">
+      <MenuItem name="status" to="/status">
         <Icon type="md-stats" />Status
       </MenuItem>
-      <MenuItem name="rank">
+      <MenuItem name="rank" to="/rank">
         <Icon type="ios-people" />Rank
       </MenuItem>
       <Submenu name="about">
         <template slot="title">
           <Icon type="ios-menu" />About
         </template>
-        <MenuGroup title="使用">
-          <MenuItem name="6-1">新增和启动</MenuItem>
-          <MenuItem name="6-2">活跃分析</MenuItem>
-          <MenuItem name="6-3">时段分析</MenuItem>
+        <MenuGroup title="about">
+          <MenuItem name="about_notice">关于</MenuItem>
+          <MenuItem name="about_developer">开发者</MenuItem>
         </MenuGroup>
-        <MenuGroup title="留存">
-          <MenuItem name="6-4">用户留存</MenuItem>
+        <MenuGroup title="who">
+          <MenuItem name="who_am_i"></MenuItem>
           <MenuItem name="6-5">流失用户</MenuItem>
         </MenuGroup>
       </Submenu>

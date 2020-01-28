@@ -39,11 +39,6 @@
     }
   }
 }
-.contest_page {
-  position: absolute;
-  right: 0;
-  bottom: 45px;
-}
 </style>
 
 <template lang="pug">
@@ -60,43 +55,11 @@ div#l_tmp
         Poptip(:title="contest.contest_name" :content="contest.contest_info" placement="right")
           a
             Icon(type="ios-alert-outline" class="contest_l_sub_io")
-  <Page v-show="show_change_page" :total="contest_data.contest_list.length" @on-change="on_change" class="contest_page" />
+  
 </template>
 
 <script>
 export default {
-  props: ["contest_data"],
-  data() {
-    return {
-      show_change_page: this.contest_data.contest_list.length > 10,
-      contest_list: this.contest_data.contest_list.slice(0, 10),
-      page_size: 10
-    };
-  },
-  methods: {
-    on_change: function(page) {
-      this.contest_list = this.contest_data.contest_list.slice(
-        (page - 1) * 10,
-        page * 10
-      );
-
-      let timer = setInterval(function() {
-        //获取滚动条距离顶部的高度
-        var osTop =
-          document.documentElement.scrollTop || document.body.scrollTop; //同时兼容了ie和Chrome浏览器
-
-        //减小的速度
-        var isSpeed = Math.floor(-osTop / 6);
-        document.documentElement.scrollTop = document.body.scrollTop =
-          osTop + isSpeed;
-
-        //判断，然后清除定时器
-        if (osTop == 0) {
-          clearInterval(timer);
-        }
-      }, 30);
-    }
-  },
-  mounted() {}
+  props: ["contest_list"]
 };
 </script>

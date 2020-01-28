@@ -25,14 +25,27 @@ $standard-error:#ed4014;
 
 @mixin switch-list-animation {
 
-  .v-enter,
-  .v-leave-to {
+  .switch-v-enter
+  .switch-v-leave-to {
     opacity: 0;
     transform: translateX(20px);
   }
 
-  .v-enter-active,
-  .v-leave-active {
+  .switch-v-enter-active,
+  .switch-v-leave-active {
     transition: all 0.2s ease;
+  }
+}
+
+@mixin flash-animation {
+
+  .flash-v-enter-active,
+  .flash-v-leave-active {
+    transition: opacity .5s;
+  }
+
+  .flash-v-enter,
+  .flash-v-leave-to {
+    opacity: 0;
   }
 }
