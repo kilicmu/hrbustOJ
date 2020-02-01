@@ -18,7 +18,7 @@ import MonacoEditor from 'monaco-editor-vue';
 import '@/styles/animate.css'
 import '@/js/textline.js'
 import '@/sass/config.scss'
-import api from "@/api.js"
+import { api } from "@/api.js"
 
 /* 第三方 */
 import echarts from "echarts";
@@ -26,11 +26,15 @@ import VueResource from 'vue-resource'
 import VueClipboard from 'vue-clipboard2'
 
 Vue.prototype.$echarts = echarts;
+Vue.prototype.$api = api;
+
 
 Vue.use(VueRouter);
 Vue.use(ViewUI);
 Vue.use(VueResource);
 Vue.use(VueClipboard);
+
+
 
 
 // 路由配置
@@ -63,20 +67,4 @@ new Vue({
     router: router,
 
     render: h => h(App),
-    mounted() {
-        // if (document.documentElement.offsetWidth > 1300) {
-        //     document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
-        // } else {
-        //     document.documentElement.style.fontSize = 13 + "px";
-        // }
-    }
 });
-
-
-// window.onresize = function () {
-//     if (document.documentElement.offsetWidth > 1300) {
-//         document.documentElement.style.fontSize = document.documentElement.offsetWidth / 100 + 'px';
-//     } else {
-//         document.documentElement.style.fontSize = 13 + "px";
-//     }
-// }

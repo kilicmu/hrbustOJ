@@ -70,11 +70,12 @@
     <Row>
       <Col span="16">
         <Card class="l_card">
-          <transition>
+          <transition name="flash">
             <contest-list :contest_list="contest_list" v-if="show_contest"></contest-list>
           </transition>
+          <Spin size="large" fix v-if="spin_show"></Spin>
           <Page
-            :total="contest_data.contest_list.length"
+            :total="contest_page"
             page_size="10"
             @on-change="contest_change"
             class="contest_page"
@@ -100,14 +101,12 @@
             <div class="circle_head"></div>
             <Card class="card">
               <strong>上期排名</strong>
-              <transition>
+
+              <transition name="flash">
                 <rank-li :rank_list="rank_list" v-if="show_rank"></rank-li>
               </transition>
-              <Page
-                :total="contest_data.rank_list.length"
-                @on-change="rank_change"
-                class="rank_page"
-              />
+              <Spin size="large" fix v-if="spin_show"></Spin>
+              <Page :total="rank_page" @on-change="rank_change" class="rank_page" />
             </Card>
           </div>
         </div>
@@ -117,18 +116,21 @@
 </template><script>
 import rankLi from "./rankLi.vue";
 import contestList from "./contestList.vue";
-import data from "./test.json";
+// import data from "./test.json";
 
 export default {
   data: function() {
     return {
       contest_url: "/contest/1/", //快速参加url
-      contesting: true, //是否正在比赛
-      contest_data: data, //页面整体数据
-      contest_list: data.contest_list.slice(0, 10), //目前展示数据
-      rank_list: data.rank_list.slice(0, 10),
+      contesting: false, //是否正在比赛
+      contest_data: {}, //页面整体数据
+      contest_list: [], //目前展示数据
+      rank_list: [],
       show_rank: true,
-      show_contest: true
+      show_contest: true,
+      rank_page: 0,
+      contest_page: 0,
+      spin_show: true
     };
   },
 
@@ -162,7 +164,22 @@ export default {
     "contest-list": contestList
   },
 
-  mounted() {
+  created() {
+    this.$api
+      .contest_init()
+      .then(data => {
+        this.contest_data = data;
+        this.contest_list = this.contest_data.contest_list.slice(0, 10);
+        this.rank_list = this.contest_data.rank_list.slice(0, 10);
+        this.contesting = this.contest_data.contesting;
+        this.rank_page = this.contest_data.rank_list.length;
+        this.contest_page = this.contest_data.contest_list.length;
+        this.spin_show = false;
+      })
+      .catch(err => {
+        this.$Message.error("服务器开小差了");
+        this.spin_show = false;
+      });
     // console.log(data);
   }
 };

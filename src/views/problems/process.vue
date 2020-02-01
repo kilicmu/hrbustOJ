@@ -38,11 +38,11 @@
   </div>
 </template>
 <script>
-import "./walden";
+import "@/js/walden";
 export default {
   data: function() {
     return {
-      solved: 600,
+      solved: 100,
       attempted: 500
     };
   },

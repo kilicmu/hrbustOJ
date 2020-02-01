@@ -9,7 +9,8 @@
 
 .title {
   strong {
-    font-size: 30px;
+    font-size: 24px;
+    color: $standard-title;
   }
   &_tags {
     position: absolute;
@@ -156,6 +157,16 @@ export default {
     problem_num: function() {
       return this.questions.length;
     }
+  },
+  mounted() {
+    // this.$http.get("http://127.0.0.1:3000/json").then(
+    //   function(res) {
+    //     document.write(res.body);
+    //   },
+    //   function() {
+    //     console.log("请求失败处理");
+    //   }
+    // );
   }
 };
 </script>

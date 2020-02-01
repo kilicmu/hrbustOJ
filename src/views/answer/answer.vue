@@ -308,17 +308,17 @@ export default {
       var data = this.code;
       var pjson = { type: type, data: data };
       console.log(pjson);
-      this.$http.post("/submit", pjson).then(
-        data => {},
-        err => {
+      this.$http
+        .post("/submit", pjson)
+        .then(data => {})
+        .catch(err => {
           if (err) {
             this.$Notice.error({
               title: "error"
             });
             throw err;
           }
-        }
-      ); //提交后台
+        }); //提交后台
     },
     doCopy(text_in) {
       this.$copyText(text_in).then(

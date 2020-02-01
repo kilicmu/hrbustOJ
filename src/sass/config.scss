@@ -19,33 +19,32 @@ $standard-error:#ed4014;
 
   .v-enter-active,
   .v-leave-active {
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-out;
   }
 }
 
 @mixin switch-list-animation {
 
-  .switch-v-enter
-  .switch-v-leave-to {
+  .switch-enter .switch-leave-to {
     opacity: 0;
     transform: translateX(20px);
   }
 
-  .switch-v-enter-active,
-  .switch-v-leave-active {
+  .switch-enter-active,
+  .switch-leave-active {
     transition: all 0.2s ease;
   }
 }
 
 @mixin flash-animation {
 
-  .flash-v-enter-active,
-  .flash-v-leave-active {
+  .flash-enter-active,
+  .flash-leave-active {
     transition: opacity .5s;
   }
 
-  .flash-v-enter,
-  .flash-v-leave-to {
+  .flash-enter,
+  .flash-leave-to {
     opacity: 0;
   }
 }
