@@ -21,7 +21,7 @@
   @include contest_card("false", rgba(31, 31, 31, 0.815), #b3b3b3);
 
   &_2 {
-    margin-top: 60px;
+    margin-top: 30px;
     position: relative;
 
     .circle_head {
@@ -65,57 +65,43 @@
   /* 可以设置不同的进入和离开动画 */
   /* 设置持续时间和动画函数 */
 }
-</style><template>
-  <Content :style="{padding: '0 50px'}">
-    <Row>
-      <Col span="16">
-        <Card class="l_card">
-          <transition name="flash">
-            <contest-list :contest_list="contest_list" v-if="show_contest"></contest-list>
-          </transition>
-          <Spin size="large" fix v-if="spin_show"></Spin>
-          <Page
-            :total="contest_page"
+</style>
+<template lang='pug'>
+  Content(:style="{padding: '0 50px'}")
+    Row
+      Col(span="16")
+        Card.l_card
+          transition(name="flash")
+            contest-list(:contest_list="contest_list" v-if="show_contest")
+          Spin(size="large" fix v-if="spin_show")
+          Page(:total="contest_page"
             page_size="10"
             @on-change="contest_change"
-            class="contest_page"
-          />
-        </Card>
-      </Col>
-      <Col span="8">
-        <div class="r_card">
-          <Card class="r_card_1_true" :to="contest_url" v-show="contesting">
-            <div class="info">
-              <p>您有正在进行的比赛</p>
-              <p>点击快速加入></p>
-            </div>
-            <img src="~@/images/fire.png" />
-          </Card>
-          <Card class="r_card_1_false" v-show="!contesting">
-            <div class="info" v-show="!contesting">
-              <p>暂时没有比赛哦</p>
-              <p>休息一下吧！</p>
-            </div>
-          </Card>
-          <div class="r_card_2">
-            <div class="circle_head"></div>
-            <Card class="card">
-              <strong>上期排名</strong>
-
-              <transition name="flash">
-                <rank-li :rank_list="rank_list" v-if="show_rank"></rank-li>
-              </transition>
-              <Spin size="large" fix v-if="spin_show"></Spin>
-              <Page :total="rank_page" @on-change="rank_change" class="rank_page" />
-            </Card>
-          </div>
-        </div>
-      </Col>
-    </Row>
-  </Content>
+            class="contest_page")
+      Col(span="8")
+        div.r_card
+          Card(:to="contest_url" v-show="contesting").r_card_1_true
+            div.info
+              p 您有正在进行的比赛 
+              p 点击快速加入
+            img(src="~@/images/fire.png")
+          Card(v-show="!contesting").r_card_1_false
+            div(v-show="!contesting").info
+              p 暂时没有比赛哦 
+              p 休息一下吧！
+          div.r_card_2
+            
+            Card.card
+              strong 上期排名 
+              transition(name="flash")
+                rank-li(:rank_list="rank_list" v-if="show_rank")
+              Spin(size="large" fix v-if="spin_show") 
+              Page(:total="rank_page" @on-change="rank_change" class="rank_page")
+          
 </template><script>
 import rankLi from "./rankLi.vue";
 import contestList from "./contestList.vue";
+import { mapState, mapMutations } from "vuex";
 // import data from "./test.json";
 
 export default {
@@ -123,7 +109,7 @@ export default {
     return {
       contest_url: "/contest/1/", //快速参加url
       contesting: false, //是否正在比赛
-      contest_data: {}, //页面整体数据
+      //页面整体数据
       contest_list: [], //目前展示数据
       rank_list: [],
       show_rank: true,
@@ -156,7 +142,8 @@ export default {
       setTimeout(() => {
         this.show_rank = true;
       }, 300);
-    }
+    },
+    ...mapMutations(["set_contest_data"])
   },
 
   components: {
@@ -167,8 +154,8 @@ export default {
   created() {
     this.$api
       .contest_init()
-      .then(data => {
-        this.contest_data = data;
+      .then(async data => {
+        this.set_contest_data(data);
         this.contest_list = this.contest_data.contest_list.slice(0, 10);
         this.rank_list = this.contest_data.rank_list.slice(0, 10);
         this.contesting = this.contest_data.contesting;
@@ -178,9 +165,14 @@ export default {
       })
       .catch(err => {
         this.$Message.error("服务器开小差了");
+        console.log(err);
         this.spin_show = false;
       });
+
     // console.log(data);
+  },
+  computed: {
+    ...mapState(["contest_data"])
   }
 };
 </script>

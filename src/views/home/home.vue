@@ -48,52 +48,35 @@
 }
 </style>
 
-<template>
-  <Content :style="{padding: '0 50px'}">
-    <Card>
-      <div style="min-height: 1600px;" clearfix>
-        <div style="position: relative">
-          <div id="bck_pic"></div>
-
-          <img src="~@/images/header-teamwork1.svg" id="header_teamwork" v-if="randnum===1" />
-          <img src="~@/images/header-teamwork2.svg" id="header_teamwork" v-if="randnum===2" />
-          <img src="~@/images/header-teamwork3.svg" id="header_teamwork" v-if="randnum===3" />
-          <div id="info">
-            <h2>An OJ platform</h2>
-            <p>You can learn the algorithm here</p>
-            <p>
-              And of course, we're going to take your problem solving information,
-              you can we're going to show you the data with other people
-            </p>
-            <Button
-              type="primary"
+<template lang="pug">
+  Content(:style="{padding: '0 50px'}")
+    Card
+      div(style="min-height: 1600px;" clearfix)
+        div(style="position: relative")
+          div#bck_pic
+          img(src="~@/images/header-teamwork1.svg" v-if="randnum===1")#header_teamwork
+          img(src="~@/images/header-teamwork2.svg" v-if="randnum===2")#header_teamwork
+          img(src="~@/images/header-teamwork3.svg" v-if="randnum===3")#header_teamwork
+          div#info
+            h2 An OJ platform
+            p You can learn the algorithm here
+            p And of course, we're going to take your problem solving information,you can we're going to show you the data with other people           
+            Button(type="primary"
               :append="b_append"
               shape="circle"
               class="start_to_problems"
-              to="/problems"
-            >start</Button>
-            <Button
-              shape="circle"
+              to="/problems") start
+            Button(shape="circle"
               :append="b_append"
               class="start_to_problems"
-              style="margin-left: 3.75rem"
-            >news</Button>
-          </div>
-        </div>
-        <Divider id="line" dashed>Characteristic</Divider>
-        <transition
-          name="cunstom-classes-transition"
+              style="margin-left: 3.75rem") news
+        Divider(dashed)#line Characteristic
+        transition(name="cunstom-classes-transition"
           enter-active-class="animated bounceInUp"
           leave-active-class="animated bounceOutRight"
-          :duration="{ enter: 800, leave: 800 }"
-        >
-          <three-cards v-if="flag"></three-cards>
-        </transition>
-      </div>
-    </Card>
-  </Content>
+          :duration="{ enter: 800, leave: 800 }")
+          three-cards(v-if="flag")
 </template>
-
 <script>
 export default {
   data() {

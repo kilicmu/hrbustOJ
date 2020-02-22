@@ -16,21 +16,17 @@
   }
 }
 </style>
-<template>
-  <div id="r_tmp">
-    <Row class="rank_li">
-      <Col span="4">#</Col>
-      <Col span="14" class="user">user</Col>
-      <Col span="6">score</Col>
-    </Row>
-    <Row v-for="item in rank_list" :key="item.id" class="rank_li">
-      <Col class="col" span="4">{{item.id}}</Col>
-      <Col class="col" span="14">
-        <Button type="text" class="user" long :to="'/user/' + item.username">{{item.name}}</Button>
-      </Col>
-      <Col class="col" span="6">{{item.score}}</Col>
-    </Row>
-  </div>
+<template lang="pug">
+  div#r_tmp
+    Row.rank_li
+      Col(span="4") #    
+      Col(span="14").user user     
+      Col(span="6") score      
+    Row(v-for="item in rank_list" :key="item.id").rank_li     
+      Col(span="4").col {{item.id}}  
+      Col(span="14").col    
+        Button(type="text" long :to="'/user/' + item.username").user {{item.name}} 
+      Col(span="6").col {{item.score}}
 </template>
 <script>
 export default {

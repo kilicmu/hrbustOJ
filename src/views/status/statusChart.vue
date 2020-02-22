@@ -1,8 +1,8 @@
 <style lang="scss">
 </style>
 <template lang="pug">
-div#app
-  div(id="main" style="width: 500px; height:500px;")
+div( style='{width: 500px;}')#app
+  div(ref="main" style="width: 500px; height:500px;")
   HR(style="FILTER: alpha(opacity=10,finishopacity=0,style=3);" width="100%" size="2")
 </template>
 <script>
@@ -21,8 +21,10 @@ export default {
   methods: {
     drawChart() {
       // 基于准备好的dom，初始化echarts实例
+
       let statusChart = this.$echarts.init(
-        document.getElementById("main"),
+        // document.getElementById("main"),
+        this.$refs.main,
         "walden"
       );
       window.onresize = function() {
@@ -77,7 +79,6 @@ export default {
       statusChart.setOption(option);
     }
   },
-
   created() {
     this.success = this.status_msg.success;
     this.fail = this.status_msg.fail;
@@ -87,8 +88,6 @@ export default {
   },
   mounted() {
     this.drawChart();
-    console.log(this.fail);
-  },
-  computed: {}
+  }
 };
 </script>

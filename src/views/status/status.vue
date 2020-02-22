@@ -47,25 +47,26 @@ Content(:style="{padding: '0 50px'}")
     transition(name="flash")
       status-list(:show_status_data="show_status_data" v-if="show_list").status_list
     Spin(size="large" fix v-if="!show_list")
-    Page(:total="page_num" :page-size="one_page_num" show-elevator @on-change="status_change").status_list_page
+    Page(:total="page_num" :page-size="one_page_size" show-elevator @on-change="status_change").status_list_page
 
 </template>
 
 <script>
 import statusList from "./statusList.vue";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   data() {
     return {
-      all_status_data: [],
+      // all_status_data: [],
       status_data: [],
       show_status_data: [],
-      user: "",
+      // user: "",
       show_self: false,
       search_value: "",
       show_list: true,
       page_num: 0,
-      one_page_num: 12
+      one_page_size: 12
     };
   },
   methods: {
@@ -131,24 +132,34 @@ export default {
       setTimeout(() => {
         this.show_list = true;
       }, 300);
-    }
+    },
+
+    ...mapMutations(["set_all_status_data"])
   },
   components: {
     "status-list": statusList
   },
   created() {
+    // this.$api
+    //   .status_init()
+    //   .then(data => {
     this.$api
       .status_init()
       .then(data => {
-        this.all_status_data = data.status_data;
+        this.set_all_status_data(data);
         this.status_data = this.all_status_data;
         this.show_status_data = this.status_data.slice(0, 12);
         this.page_num = this.all_status_data.length;
-        this.user = data.user;
       })
       .catch(err => {
         this.$Message.error("服务器开小差了");
       });
-  }
+
+    // })
+    // .catch(err => {
+    //   this.$Message.error("服务器开小差了");
+    // });
+  },
+  computed: { ...mapState(["user", "all_status_data"]) }
 };
 </script>

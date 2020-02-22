@@ -52,17 +52,8 @@ div
         Col(span=3) {{item.language}}
         Col(span=3) {{item.anuther}}
         Col(span=2) 
-          Button(type="text" @click="show=true").show_status_btn
+          Button(type="text" @click="confirm(item.problem_msg)").show_status_btn
             Icon(type="ios-trending-up").status_icon
-        Modal(
-          v-model="show"
-          title="STATUS"
-          @on-ok="ok"
-          @on-cancel="cancel"
-        )
-          div#app
-            div(id="main" style="width: 500px; height:500px;")
-            HR(style="FILTER: alpha(opacity=10,finishopacity=0,style=3);" width="100%" size="2")
           
   
     
@@ -72,7 +63,7 @@ import statusChart from "./statusChart.vue";
 export default {
   props: ["show_status_data"],
   components: {
-    "status-chart": statusChart
+    statusChart
   },
   data() {
     return {
@@ -81,8 +72,17 @@ export default {
   },
   methods: {
     show_modal: function() {},
-    ok: function() {},
-    cancel: function() {}
+    confirm: function(d) {
+      this.$Modal.confirm({
+        width: 560,
+        closable: true,
+        render: h => {
+          return h(statusChart, {
+            props: { status_msg: d }
+          });
+        }
+      });
+    }
   },
   mounted() {}
 };

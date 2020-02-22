@@ -111,123 +111,81 @@
   height: 20px;
 }
 </style>
-<template>
-  <Content :style="{padding: '0 50px'}" id="content">
-    <div style="{margin: '40px'}"></div>
+<template lang="pug">
+  Content(:style="{padding: '0 50px'}")#content
+    div(style="{margin: '40px'}")
 
-    <Row>
-      <Col span="10">
-        <Card id="lcard_description">
-          <span id="problem_title">{{problem_title}}</span>
-          <Divider type="vertical" />
-          <Tag color="success" v-if="difficuly ===1">Easy</Tag>
-          <Tag color="warning" v-if="difficuly ===2">Medium</Tag>
-          <Tag color="error" v-if="difficuly ===3">Hard</Tag>
-          <Tag color="geekblue" v-if="pass===1">AC</Tag>
-          <Poptip placement="bottom-end" width="300" style="{white-space: normal;float: right;}">
-            <Button type="text">
-              <Icon type="ios-menu" />
-            </Button>
-            <div class="api" slot="content">
-              <Card id="lcard">
-                <p class="introduce">Info:</p>
-                <Divider />
-                <p>
-                  id:
-                  <span>{{problem_info.id}}</span>
-                </p>
-                <p>
-                  limit_time:
-                  <span>{{problem_info.limit_time}}</span>
-                </p>
-                <p>
-                  limit_memory:
-                  <span>{{problem_info.limit_memory}}</span>
-                </p>
-                <p>
-                  from:
-                  <span>{{problem_info.from}}</span>
-                </p>
-                <p>
-                  information:
-                  <span>{{problem_info.information}}</span>
-                </p>
-              </Card>
-            </div>
-          </Poptip>
-          <Divider />
-          <p class="introduce">Introduce:</p>
-          <span class="problem_introduce_t">&nbsp;&nbsp;&nbsp;&nbsp;{{problem_introduce}}</span>
-          <Divider />
-          <p class="introduce">In:</p>
-          <span class="problem_introduce_t">&nbsp;&nbsp;&nbsp;&nbsp;{{problem_in}}</span>
-          <p class="introduce">Out:</p>
-          <span class="problem_introduce_t">&nbsp;&nbsp;&nbsp;&nbsp;{{problem_out}}</span>
-        </Card>
-        <div id="temp"></div>
-        <Row v-for="item in problem_demo" :key="item.id">
-          <Card id="demo">
-            <Tooltip content="copy demo in" class="circle_button" id="copyIt">
-              <Button icon="ios-copy-outline" @click="doCopy(item.in)" shape="circle"></Button>
-            </Tooltip>
-            <p class="introduce">In Demo&nbsp;{{item.id}}:</p>
+    Row
+      Col(span="10")
+        Card#lcard_description
+          span#problem_title {{problem_title}}
+          Divider(type="vertical")
+          Tag(color="success" v-if="difficuly ===1") Easy
+          Tag(color="warning" v-if="difficuly ===2") Medium
+          Tag(color="error" v-if="difficuly ===3") Hard
+          Tag(color="geekblue" v-if="pass ===1") AC
 
-            <span class="problem_introduce">{{item.in}}</span>
-
-            <p class="introduce">Out Demo&nbsp;{{item.id}}:</p>
-
-            <span class="problem_introduce">{{item.out}}</span>
-          </Card>
-        </Row>
-      </Col>
-      <Col span="14">
-        <Card id="rcard">
-          <div id="tools">
-            <Select v-model="l_type" style="width:160px">
-              <Option v-for="item in types" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-            <Select v-model="l_terminal" style="width:80px">
-              <Option
-                v-for="item in terminals"
+          Poptip(placement="bottom-end" width="300" style="{white-space: normal;float: right;}")
+            Button(type="text")
+              Icon(type="ios-menu")
+            div(slot="content").api
+              Card#lcard
+                p.introduce Info:
+                p id:
+                  span {{problem_info.id}}
+                p limit_time:
+                  span {{problem_info.limit_time}}
+                p limit_memory: 
+                  span {{problem_info.limit_memory}}
+                p from:
+                  span {{problem_info.from}}
+                p information: 
+                  span {{problem_info.information}}
+          Divider
+          p.introduce Introduce:
+          span.problem_introduce_t &nbsp;&nbsp;&nbsp;&nbsp;{{problem_introduce}}
+          Divider
+          p.introduce In:
+          span.problem_introduce_t &nbsp;&nbsp;&nbsp;&nbsp;{{problem_in}}
+          p.introduce Out:
+          span.problem_introduce_t &nbsp;&nbsp;&nbsp;&nbsp;{{problem_out}}
+        div#temp
+        Row(v-for="item in problem_demo" :key="item.id")
+          Card#demo
+            Tooltip(content="copy demo in" class="circle_button" id="copyIt")
+              Button(icon="ios-copy-outline" @click="doCopy(item.in)" shape="circle")
+            p.introduce In Demo&nbsp;{{item.id}}:
+            span.problem_introduce {{item.in}}
+            p.introduce Out Demo&nbsp;{{item.id}}:
+            span.problem_introduce {{item.out}}
+      Col(span="14")
+        Card#rcard
+          div#tools
+            Select(v-model="l_type" style="width:160px")
+              Option(v-for="item in types" :value="item.value" :key="item.value") {{ item.label }}
+            Select(v-model="l_terminal" style="width:80px")
+              Option(v-for="item in terminals"
                 :value="item.value"
-                :key="item.value"
-              >{{ item.label }}</Option>
-            </Select>
-            <div id="buttons">
-              <Tooltip content="上传" class="circle_button">
-                <Upload action="#" :before-upload="handleUpload">
-                  <Button icon="ios-cloud-upload-outline" shape="circle"></Button>
-                </Upload>
-              </Tooltip>
-              <Tooltip content="清空" class="circle_button">
-                <Button icon="md-refresh" @click.prevent="code=''" shape="circle"></Button>
-              </Tooltip>
-            </div>
-            <div class="button_group">
-              <Button type="warning" id="give_up_button" @click.prevent="b_give_up=true">GIVE UP</Button>
-              <Button type="success" @click.prevent="submit">SUBMIT</Button>
-              <Modal v-model="b_give_up" title="提示" @on-ok="give_up" @on-cancel="cancel_give_up">
-                <p>确认要放弃吗?</p>
-              </Modal>
-            </div>
-          </div>
-          <div id="Filling"></div>
-          <div id="textarea-m">
-            <MonacoEditor
-              :width="editorWidth"
+                :key="item.value") {{ item.label }}
+            div#buttons
+              Tooltip(content="上传").circle_button
+                Upload(action="#" :before-upload="handleUpload")
+                  Button(icon="ios-cloud-upload-outline" shape="circle")
+              Tooltip(content="清空").circle_button
+                Button(icon="md-refresh" @click.prevent="code=''" shape="circle")
+            div.button_group
+              Button(type="warning" id="give_up_button" @click.prevent="b_give_up=true") GIVE UP
+              Button(type="success" @click.prevent="submit") SUBMIT
+              Modal(v-model="b_give_up" title="提示" @on-ok="give_up" @on-cancel="cancel_give_up")
+                p 确认要放弃吗?
+          div#Filling
+          div#textarea-m
+            MonacoEditor(:width="editorWidth"
               height="1000"
               :theme="l_terminal"
               v-model="code"
-              :language="l_type"
-            ></MonacoEditor>
-          </div>
-        </Card>
-      </Col>
-    </Row>
-  </Content>
+              :language="l_type")  
 </template>
-
-
 <script>
 export default {
   data() {

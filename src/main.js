@@ -4,13 +4,14 @@ import 'view-design/dist/styles/iview.css'
 import VueRouter from 'vue-router';
 import Routers from './router';
 import Util from './libs/util';
+import store from './store'
 
 
 /*templates*/
 import App from '@/app.vue';
 import indexShow from '@/views/home/home.vue'
 import threeCards from '@/views/home/threeCards.vue'
-import Header from '@/views/header.vue'
+import Header from '@/views/header/header.vue'
 import processPic from '@/views/problems/process.vue'
 import newLi from '@/views/problems/newLi.vue'
 import MonacoEditor from 'monaco-editor-vue';
@@ -64,7 +65,7 @@ Vue.component('MonacoEditor', MonacoEditor)
 
 new Vue({
     el: '#app',
-    router: router,
-
+    router,
+    store,
     render: h => h(App),
 });

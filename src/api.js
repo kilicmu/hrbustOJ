@@ -3,13 +3,19 @@ const BASE_RUL = "http://127.0.0.1:3000"
 
 
 let api = {
-    contest_init: contest_init,
-    status_init: status_init,
-    ajax: ajax
+    problems_init,
+    contest_init,
+    status_init,
+    ajax
+}
+
+async function problems_init() {
+    let url = "/api/problems_init";
+    return await ajax({ url: url });
 }
 
 async function contest_init() {
-    let url = "http://127.0.0.1:3000/json";
+    let url = "/json";
     return await ajax({ url: url });
 }
 
