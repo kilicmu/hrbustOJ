@@ -5,11 +5,26 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        user: '',
+        user: {
+            is_login: false,
+            name: 'jx2234',
+            mail: '',
+            description: '',
+            from: '',
+            head_pic: '',
+            blog_url: '',
+            qq: '',
+            wechat: '',
+            weibo: '',
+            wyy: ''
+        },
         all_questions: [],
         all_status_data: [],
         contest_data: {},
     }, mutations: {
+        login(state, user) {
+            state.user = user;
+        },
         change_user(state, user) {
             state.user = user;
         },
@@ -25,5 +40,8 @@ export default new Vuex.Store({
         }
     }, actions: {
 
+    },
+    getters: {
+        user_name: state => (state.user.name)
     }
 })

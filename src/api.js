@@ -6,33 +6,44 @@ let api = {
     problems_init,
     contest_init,
     status_init,
-    ajax
+    post_user_massage,
+    query_user_by_username
+}
+async function query_user_by_username(username) {
+    let url = "/api/serach_user";
+    let data = { username };
+    return await asyncRequest({ url, data });
+}
+
+async function post_user_massage(data) {
+    let url = "/api/post_user_massage";
+    return await asyncRequest({ url, data })
 }
 
 async function problems_init() {
     let url = "/api/problems_init";
-    return await ajax({ url: url });
+    return await asyncRequest({ url });
 }
 
 async function contest_init() {
-    let url = "/json";
-    return await ajax({ url: url });
+    let url = "/api/json";
+    return await asyncRequest({ url });
 }
 
 async function status_init() {
     let url = "/api/status_init";
-    return await ajax({ url: url });
+    return await asyncRequest({ url });
 }
 
-function ajax(params) {
+function asyncRequest(params) {
     let url = '';
     if (params.url) {
         url = params.url.startsWith('http') ? params.url : BASE_RUL + params.url;
     } else {
         throw new Error('url is not null');
     }
-    let method = params.method || 'get';
-    let data = method === 'post' ? params.data ? params.data : {} : null;
+    let method = params.data ? 'POST' : 'GET';
+    let data = method === 'POST' ? params.data ? params.data : {} : null;
 
     let config = {};
     config.method = method;

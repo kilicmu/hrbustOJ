@@ -14,13 +14,12 @@ import threeCards from '@/views/home/threeCards.vue'
 import Header from '@/views/header/header.vue'
 import processPic from '@/views/problems/process.vue'
 import newLi from '@/views/problems/newLi.vue'
-import MonacoEditor from 'monaco-editor-vue';
+import MonacoEditor from 'monaco-editor-vue'
 
-import '@/styles/animate.css'
 import '@/js/textline.js'
 import '@/sass/config.scss'
 import { api } from "@/api.js"
-
+import regs from '@/regs.js'
 /* 第三方 */
 import echarts from "echarts";
 import VueResource from 'vue-resource'
@@ -28,6 +27,7 @@ import VueClipboard from 'vue-clipboard2'
 
 Vue.prototype.$echarts = echarts;
 Vue.prototype.$api = api;
+Vue.prototype.$regs = regs;
 
 
 Vue.use(VueRouter);

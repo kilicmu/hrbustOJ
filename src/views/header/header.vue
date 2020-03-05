@@ -121,7 +121,7 @@ export default {
       theme1: "light",
       w: "1600",
       is_active: "home",
-      show_conversion: true,
+      show_conversion: false,
       show_sign_in: true,
       show_sign_up: false,
       show_change_password: false

@@ -34,5 +34,9 @@ const routers = [{
 }
 
     ,
+{
+    path: '/user/:uid',
+    component: (resolve) => require(['@/views/user/user.vue'], resolve),
+}
 ];
 export default routers;
